@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IslandClusteringAcceleration.Helpers;
+using System;
 
 namespace IslandClusteringAcceleration.Models
 {
@@ -6,34 +7,19 @@ namespace IslandClusteringAcceleration.Models
     {
         private int _dimension;
         private double[] _valueVector;
+        private readonly VectorPositionCalculationHelper _vectorPositionCalculationHelper;
 
         public CorrelationMatrix(int dimension)
         {
             _dimension = dimension;
             _valueVector = new double[_dimension * (_dimension - 1) / 2];
+            _vectorPositionCalculationHelper = new VectorPositionCalculationHelper();
         }
 
         public double this[int i, int j]
         {
-            get => _valueVector[GetPositionInVector(i, j)];
-            set => _valueVector[GetPositionInVector(i, j)] = value;
-        }
-
-        private int GetPositionInVector(int i, int j)
-        {
-            if (i == j)
-            {
-                throw new ArgumentOutOfRangeException();
-            }
-
-            if (i > j)
-            {
-                var temp = i;
-                i = j;
-                j = temp;
-            }
-
-            return _dimension * (_dimension - 1) / 2 - (_dimension - i) * (_dimension - i - 1) / 2 + j - i - 1;
+            get => _valueVector[_vectorPositionCalculationHelper.GetPositionInVector(i, j, _dimension)];
+            set => _valueVector[_vectorPositionCalculationHelper.GetPositionInVector(i, j, _dimension)] = value;
         }
     }
 }
