@@ -6,7 +6,7 @@ namespace IslandClusteringAcceleration.TermCountInTextsProviders
 {
     public class Calculus : ITermCountInTextsProvider
     {
-        public int GetCount(Corpus corpus, int i)
+        public virtual int GetCount(Corpus corpus, int i)
         {
             return corpus.Texts.
                 Where(x => x.Lemmas.Contains(corpus.UniqueLemmas.ElementAt(i))).
