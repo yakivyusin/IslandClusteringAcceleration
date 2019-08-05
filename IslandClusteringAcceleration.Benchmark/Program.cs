@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BenchmarkDotNet.Running;
+using IslandClusteringAcceleration.Benchmark.Benchmarks;
 
 namespace IslandClusteringAcceleration.Benchmark
 {
@@ -6,7 +7,7 @@ namespace IslandClusteringAcceleration.Benchmark
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            BenchmarkRunner.Run<AllBenchmark>();
         }
     }
 }
