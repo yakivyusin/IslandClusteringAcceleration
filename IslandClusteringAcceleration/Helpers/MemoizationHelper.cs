@@ -1,29 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.Concurrent;
 
 namespace IslandClusteringAcceleration.Helpers
 {
     internal class MemoizationHelper<TKey, TValue>
     {
-        private Dictionary<TKey, TValue> _memoizedValues = new Dictionary<TKey, TValue>();
-        private object _lock = new object();
+        private ConcurrentDictionary<TKey, TValue> _memoizedValues = new ConcurrentDictionary<TKey, TValue>();
 
         public TValue GetValue(TKey key, Func<TKey, TValue> calculationCallback)
         {
-            if (!_memoizedValues.TryGetValue(key, out TValue value))
-            {
-                value = calculationCallback(key);
-
-                lock (_lock)
-                {
-                    if (!_memoizedValues.ContainsKey(key))
-                    {
-                        _memoizedValues.Add(key, value);
-                    }
-                }
-            }
-
-            return value;
+            return _memoizedValues.GetOrAdd(key, calculationCallback);
         }
     }
 }
