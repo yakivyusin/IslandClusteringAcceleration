@@ -22,5 +22,10 @@ namespace IslandClusteringAcceleration.Models
         public IReadOnlyCollection<string> AllLemmas => _allLemmas.Value;
 
         public IReadOnlyCollection<string> UniqueLemmas => _uniqueLemmas.Value;
+
+        public override string ToString()
+        {
+            return $"Ndocs: {Texts.Count}; Nterms: {UniqueLemmas.Count}";
+        }
     }
 }
