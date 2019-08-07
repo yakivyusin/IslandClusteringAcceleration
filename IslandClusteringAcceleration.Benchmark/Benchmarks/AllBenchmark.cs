@@ -15,7 +15,7 @@ namespace IslandClusteringAcceleration.Benchmark.Benchmarks
     [MemoryDiagnoser]
     public class AllBenchmark
     {
-        private static readonly int[] _corpusSizes = new[] { 82 };
+        private static readonly int[] _corpusSizes = new[] { 49, 169, 441, 961, 1849, 3249, 5329, 8281, 12321, 17049 };
 
         // Serial calculators
         private CorrelationMatrixCalculator _serial00 = new CorrelationMatrixCalculator(new Serial(),
