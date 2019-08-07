@@ -11,6 +11,7 @@ namespace IslandClusteringAcceleration.Benchmark.Benchmarks
 {
     [RPlotExporter]
     [CsvMeasurementsExporter]
+    [JsonExporterAttribute.Brief]
     [MemoryDiagnoser]
     public class AllBenchmark
     {
