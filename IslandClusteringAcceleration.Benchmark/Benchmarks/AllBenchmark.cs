@@ -84,7 +84,7 @@ namespace IslandClusteringAcceleration.Benchmark.Benchmarks
         [Benchmark(Description = "Parallel2 / Memo / Memo")]
         public void ParallelTwo11() => _parallelTwo11.GetMatrix(Corpus);
 
-        public static int[] CorpusSizes { get; set; } = new[] { 49, 169, 441, 961, 1849, 3249, 5329, 8281, 12321, 17049 };
+        public static int[] CorpusSizes { get; set; } = new[] { 49, 169, 245, 371, 441, 569, 659, 785 };
 
         public IEnumerable<Corpus> TestCorpuses => CorpusSizes.Select(x => new CorpusGenerator(x).GetCorpus());
     }
